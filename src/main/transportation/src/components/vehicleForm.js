@@ -17,9 +17,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Step2(props) {
+export default class Step2 extends React.Component{ 
 
-    const classes = useStyles();
+    constructor(props){
+        super(props);
+        this.state = {
+            firstname : '',
+        }   
+    }
+
+    componentDidMount(){
+        this.setState({
+            firstname: ''
+        });
+    }
+    render(){
+
+        const classes = useStyles;
 
     return (
         <Container style={{marginRight: 700}}>
@@ -63,4 +77,5 @@ export default function Step2(props) {
             </Row>
         </Container>
     );
+}
 }
