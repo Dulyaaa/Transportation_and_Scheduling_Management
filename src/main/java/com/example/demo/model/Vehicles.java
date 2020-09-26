@@ -3,23 +3,35 @@ package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "vehicles")
+@Document(collection = "Vehicles")
 public class Vehicles {
 
     @Id
-    private String vehicleId;
+    private String id;
+
     private String vehicleNumber;
     private int registeredYear;
     private String type;
     private boolean status;
     private int capacity;
 
+    public Vehicles() {
+    }
+
+    public Vehicles(String vehicleNumber, int registeredYear, String type, boolean status, int capacity) {
+        this.vehicleNumber = vehicleNumber;
+        this.registeredYear = registeredYear;
+        this.type = type;
+        this.status = status;
+        this.capacity = capacity;
+    }
+
     public String getVehicleId() {
-        return vehicleId;
+        return id;
     }
 
     public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
+        this.id = vehicleId;
     }
 
     public String getVehicleNumber() {
@@ -62,4 +74,8 @@ public class Vehicles {
         this.registeredYear = registeredYear;
     }
 
+    @Override
+    public String toString(){
+        return "Vehicle [id="+id+", vehicleNumber=" + vehicleNumber+"type="+type+"status="+status+"capacity"+capacity+"]";
+    }
 }
