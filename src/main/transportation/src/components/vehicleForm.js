@@ -1,49 +1,72 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/tutorial.service";
+import VehicleDataService from "../services/vehicle.service";
+import { Link } from "react-router-dom";
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 export default class VehicleForm extends Component {
   constructor(props) {
     super(props);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangevehicleNumber = this.onChangevehicleNumber.bind(this);
+    this.onChangeregisteredYear = this.onChangeregisteredYear.bind(this);
+    this.onChangetype = this.onChangetype.bind(this);
+    this.onChangecapacity = this.onChangecapacity.bind(this);
     this.saveTutorial = this.saveTutorial.bind(this);
     this.newTutorial = this.newTutorial.bind(this);
 
     this.state = {
       id: null,
-      title: "",
-      description: "",
-      published: false,
+      vehicleNumber: "",
+      registeredYear: "",
+      type: "",
+      capacity: "",
+      status: false,
 
       submitted: false
     };
   }
 
-  onChangeTitle(e) {
+  onChangevehicleNumber(e) {
     this.setState({
-      title: e.target.value
+      vehicleNumber: e.target.value
     });
   }
 
-  onChangeDescription(e) {
+  onChangeregisteredYear(e) {
     this.setState({
-      description: e.target.value
+      registeredYear: e.target.value
+    });
+  }
+
+  onChangetype(e) {
+    this.setState({
+      type: e.target.value
+    });
+  }
+
+  onChangecapacity(e) {
+    this.setState({
+      capacity: e.target.value
     });
   }
 
   saveTutorial() {
     var data = {
-      title: this.state.title,
-      description: this.state.description
+      vehicleNumber: this.state.vehicleNumber,
+      registeredYear: this.state.registeredYear,
+      type: this.state.type,
+      capacity: this.state.capacity,
     };
 
-    TutorialDataService.create(data)
+    VehicleDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          title: response.data.title,
-          description: response.data.description,
-          published: response.data.published,
+          vehicleNumber: response.data.vehicleNumber,
+          registeredYear: response.data.registeredYear,
+          type: response.data.type,
+          capacity: response.data.capacity,
+          status: response.data.status,
 
           submitted: true
         });
@@ -57,9 +80,11 @@ export default class VehicleForm extends Component {
   newTutorial() {
     this.setState({
       id: null,
-      title: "",
-      description: "",
-      published: false,
+      vehicleNumber: "",
+      registeredYear: "",
+      type: "",
+      capacity: "",
+      status: false,
 
       submitted: false
     });
@@ -70,38 +95,78 @@ export default class VehicleForm extends Component {
       <div className="submit-form">
         {this.state.submitted ? (
           <div>
-            <h4>You submitted successfully!</h4>
+            <h4>You submitted successfully inserted new Vehicle!</h4>
             <button className="btn btn-success" onClick={this.newTutorial}>
-              Add
+              Submit New
             </button>
           </div>
         ) : (
-          <div>
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                required
-                value={this.state.title}
-                onChange={this.onChangeTitle}
-                name="title"
-              />
-            </div>
+          <div Style="width:600px; margin:0 auto">
+            {/* <div className="form-group">
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroup-sizing-default">Vehicle Number</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <FormControl
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
+                    onChange ={this.onChangeTitle}
+                    value = {this.state.title}
+                  />
+                </InputGroup>
+            </div> */}
 
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="description"
-                required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
-                name="description"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="vehicleNumber">Vehicle Number</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="vehicleNumber"
+                  required
+                  value={this.state.vehicleNumber}
+                  onChange={this.onChangevehicleNumber}
+                  name="vehicleNumber"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="registeredYear">Registered Year</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="registeredYear"
+                  required
+                  value={this.state.registeredYear}
+                  onChange={this.onChangeregisteredYear}
+                  name="registeredYear"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="type">Type</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="type"
+                  required
+                  value={this.state.type}
+                  onChange={this.onChangetype}
+                  name="type"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="capacity">Capacity</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="capacity"
+                  required
+                  value={this.state.capacity}
+                  onChange={this.onChangecapacity}
+                  name="capacity"
+                />
+              </div>
 
             <button onClick={this.saveTutorial} className="btn btn-success">
               Submit

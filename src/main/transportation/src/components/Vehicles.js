@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,6 +16,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import { render } from '@testing-library/react';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -50,12 +51,28 @@ const rows = [
     createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
     createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
     createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
+    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
+    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
+    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
+    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
+    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
+    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
+    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
+    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
 ];
 
 const useStyles = makeStyles((theme) => ({
 
     table: {
-        minWidth: 900,
+        minWidth: 500,
     },
 
     root: {
@@ -76,8 +93,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function CustomizedTables() {
-    const classes = useStyles();
+export default class CustomizedTables extends Component {
+
+    render(){
+    const classes = useStyles;
 
        return (
 
@@ -91,6 +110,14 @@ export default function CustomizedTables() {
 
            <div className={classes.root}>
 
+                   <Link to="/VehicleForm">
+                       <Fab variant="extended" color="primary" className={classes.Fab}>
+                           <AddIcon className={classes.extendedIcon} />
+        Add New Vehicle
+      </Fab>
+     </Link>
+
+        <br/><br/>
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
@@ -134,13 +161,9 @@ export default function CustomizedTables() {
                 </TableBody>
             </Table>
         </TableContainer>
-            <Link to="/VehicleForm">
-               <Fab variant="extended" color="primary" className={classes.Fab}>
-                   <AddIcon className={classes.extendedIcon} />
-        Add New Vehicle
-      </Fab>
-      </Link>
+        <br/><br/>
         </div>
         </div>
     );
+    }
 }

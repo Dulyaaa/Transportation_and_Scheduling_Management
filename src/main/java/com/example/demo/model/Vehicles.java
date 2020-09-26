@@ -26,13 +26,13 @@ public class Vehicles {
         this.capacity = capacity;
     }
 
-    public String getVehicleId() {
+    public String getId() {
         return id;
     }
 
-    public void setVehicleId(String vehicleId) {
-        this.id = vehicleId;
-    }
+//    public void setId(String Id) {
+//        this.id = Id;
+//    }
 
     public String getVehicleNumber() {
         return vehicleNumber;
