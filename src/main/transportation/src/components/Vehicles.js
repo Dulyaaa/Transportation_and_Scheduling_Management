@@ -17,6 +17,7 @@ import AddIcon from '@material-ui/icons/Add';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import { render } from '@testing-library/react';
+import VehicleDataService from "../services/vehicle.service";
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -44,29 +45,7 @@ function createData(vehicle, reg, type, capacity, status, option) {
     return { vehicle, reg, type, capacity, status, option };
 }
 const rows = [
-    createData('WP AAA-1234', 2015, 'Van', 500, 'Available'),
-    createData('WP AAA-1432', 2015, 'Van', 500, 'Available'),
-    createData('WP AAA-1232', 2013, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
-    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
-    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
-    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
-    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
-    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
-    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
-    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
-    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2014, 'Lorry', 1000, 'Available'),
-    createData('WP AAA-1232', 2017, 'Lorry', 1000, 'Not Available'),
-    createData('WP AAA-1432', 2010, 'Van', 500, 'Available'),
-    createData('WP AAA-3432', 2013, 'Lorry', 1000, 'Not Available'),
+    createData('WP AAA-1234', 2015, 'Van', 500, 'Available')
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -94,6 +73,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default class CustomizedTables extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.retrieveVehicles = this.retrieveVehicles.bind(this);
+
+        this.state = {
+            vehicles: []
+        }
+
+    }
+
+    componentDidMount(){
+        this.retrieveVehicles();
+    }
+
+    retrieveVehicles(){
+        VehicleDataService.getAll().then(response => {
+            this.setState({
+                vehicles: response.data
+            });
+            console.log(response.data);
+        })
+        .catch(e => {
+            console.log(e);
+        });
+    }
 
     render(){
     const classes = useStyles;
@@ -131,33 +137,27 @@ export default class CustomizedTables extends Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
-                            <StyledTableCell component="th" scope="row" align="center">
-                                {row.vehicle}
-                            </StyledTableCell>
-                            <StyledTableCell align="center">{row.reg}</StyledTableCell>
-                            <StyledTableCell align="center">{row.type}</StyledTableCell>
-                            <StyledTableCell align="center">{row.capacity}</StyledTableCell>
+                    {
+                    this.state.vehicles.map (
+                        vehicle =>
+                        <StyledTableRow key={vehicle.id}>
+                                <StyledTableCell component="th" scope="row" align="center">{vehicle.vehicleNumber}</StyledTableCell>
+                                <StyledTableCell align="center">{vehicle.registeredYear}</StyledTableCell>
+                                <StyledTableCell align="center">{vehicle.type}</StyledTableCell>
+                                <StyledTableCell align="center">{vehicle.capacity}</StyledTableCell>
                             <StyledTableCell align="center">
                                 <div className={classes.root}>
                                     <Chip size="small"
-                                        label={row.status}
-                                        color="primary"
-                                    />
+                                            label={vehicle.status ? "Available" : "Not Available"}
+                                        color="primary"/>
                                 </div>
                             </StyledTableCell>
                             <StyledTableCell align="right">
-                                <button>
-                                <EditIcon color="primary">
-                                </EditIcon>
-                                </button>&nbsp;&nbsp;
-                                <button>
-                                <DeleteIcon color="error"></DeleteIcon>
-                                </button>
+                                <button><EditIcon color="primary"></EditIcon></button>&nbsp;&nbsp;
+                                <button><DeleteIcon color="error"></DeleteIcon></button>
                             </StyledTableCell>
                         </StyledTableRow>
-                    ))}
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>
