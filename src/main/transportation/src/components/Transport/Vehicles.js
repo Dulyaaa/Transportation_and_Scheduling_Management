@@ -17,14 +17,20 @@ import AddIcon from '@material-ui/icons/Add';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import { render } from '@testing-library/react';
-import VehicleDataService from "../services/vehicle.service";
+import VehicleDataService from "../../services/vehicle.service";
+import { Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: theme.palette.action.active,
         color: theme.palette.common.white,
         fontSize: 20,
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingTop: 25,
+        paddingBottom:25
     },
 
     body: {
@@ -38,6 +44,8 @@ const StyledTableRow = withStyles((theme) => ({
             //backgroundColor: theme.palette.action.hover,
             backgroundColor: theme.palette.action.focus,
         },
+
+        padding: 20
     },
 }))(TableRow);
 
@@ -51,7 +59,7 @@ const rows = [
 const useStyles = makeStyles((theme) => ({
 
     table: {
-        minWidth: 500,
+        minWidth: 100,
     },
 
     root: {
@@ -78,9 +86,11 @@ export default class CustomizedTables extends Component {
         super(props)
 
         this.retrieveVehicles = this.retrieveVehicles.bind(this);
+        this.editVehicle = this.editVehicle.bind(this);
+        this.deleteVehicle = this.deleteVehicle.bind(this);
 
         this.state = {
-            vehicles: []
+            vehicles: [],
         }
 
     }
@@ -101,6 +111,21 @@ export default class CustomizedTables extends Component {
         });
     }
 
+    editVehicle(id){
+        this.props.history.push("/VehicleUpdate/" + id);
+    }
+
+    deleteVehicle(id){
+        VehicleDataService.delete(id)
+        .then(response => {
+            this.setState({vehicles: this.state.vehicles.filter(vehicle => vehicle.id !== id)});
+            console.log(response.data);
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    }
+
     render(){
     const classes = useStyles;
 
@@ -108,7 +133,7 @@ export default class CustomizedTables extends Component {
 
         <div>
             <div>
-                <h1>
+                <h1 style={{paddingTop: 20 }}>
                     Vehicle Details
                 </h1>
                 <br /><br />
@@ -153,8 +178,8 @@ export default class CustomizedTables extends Component {
                                 </div>
                             </StyledTableCell>
                             <StyledTableCell align="right">
-                                <button><EditIcon color="primary"></EditIcon></button>&nbsp;&nbsp;
-                                <button><DeleteIcon color="error"></DeleteIcon></button>
+                                    <button><EditIcon color="primary" onClick={() => this.editVehicle(vehicle.id)}></EditIcon></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button><DeleteIcon color="error" onClick={() => this.deleteVehicle(vehicle.id)}></DeleteIcon></button>
                             </StyledTableCell>
                         </StyledTableRow>
                     )}

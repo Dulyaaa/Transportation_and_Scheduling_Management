@@ -14,25 +14,23 @@ public class Vehicles {
     private String type;
     private boolean status;
     private int capacity;
+    private float price;
 
     public Vehicles() {
     }
 
-    public Vehicles(String vehicleNumber, int registeredYear, String type, boolean status, int capacity) {
+    public Vehicles(String vehicleNumber, int registeredYear, String type, boolean status, int capacity, float price) {
         this.vehicleNumber = vehicleNumber;
         this.registeredYear = registeredYear;
         this.type = type;
         this.status = status;
         this.capacity = capacity;
+        this.price = price;
     }
 
     public String getId() {
         return id;
     }
-
-//    public void setId(String Id) {
-//        this.id = Id;
-//    }
 
     public String getVehicleNumber() {
         return vehicleNumber;
@@ -72,6 +70,14 @@ public class Vehicles {
 
     public void setRegisteredYear(int registeredYear) {
         this.registeredYear = registeredYear;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     @Override

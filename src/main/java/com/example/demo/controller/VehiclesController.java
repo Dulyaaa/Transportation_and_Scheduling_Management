@@ -53,7 +53,7 @@ public class VehiclesController {
     @PostMapping("/Vehicles")
     public ResponseEntity<Vehicles> createVehicle(@RequestBody Vehicles vehicles) {
         try{
-            Vehicles _vehicles = vehiclesRepository.save(new Vehicles(vehicles.getVehicleNumber(), vehicles.getRegisteredYear(), vehicles.getType(), false, vehicles.getCapacity()));
+            Vehicles _vehicles = vehiclesRepository.save(new Vehicles(vehicles.getVehicleNumber(), vehicles.getRegisteredYear(), vehicles.getType(), false, vehicles.getCapacity(), vehicles.getPrice()));
             return new ResponseEntity<>(_vehicles, HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,6 +70,7 @@ public class VehiclesController {
             _vehicle.setRegisteredYear(vehicles.getRegisteredYear());
             _vehicle.setCapacity(vehicles.getCapacity());
             _vehicle.setType(vehicles.getType());
+            _vehicle.setPrice(vehicles.getPrice());
             _vehicle.setStatus(vehicles.isStatus());
 
             return new ResponseEntity<>(vehiclesRepository.save(_vehicle), HttpStatus.OK);

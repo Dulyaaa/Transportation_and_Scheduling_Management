@@ -6,13 +6,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
 import {Row, Col} from 'react-bootstrap';
-import { Link, NavLink } from 'react-dom';
-import AddIcon from '@material-ui/icons/Add';
 //import Form from './form';
 import props from 'prop-types';
+import Navbar from 'react-bootstrap/Navbar'
+import { Nav } from 'react-bootstrap';
+import {useHistory} from 'react-router-dom';
+//import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
         marginTop:50,
     },
     media: {
-        height: 140,
+        height: 200,
     },
     button: {
         marginLeft: 100,
@@ -34,12 +35,30 @@ const useStyles = makeStyles({
 export default function MediaCard() {
     const classes = useStyles();
 
-    function handleClick () {
-        props.history.push('/form');
+    const history = useHistory();
+
+    const routeChangeTrans = () => {
+        let path = 'TransportMain';
+        history.push(path);
     }
 
     return (
         <div>
+            <div>
+                <h1 style={{ fontSize: 60, padding: 30 }}>C-four Industries</h1>
+            </div>
+            <div style={{marginLeft: 1300}}>
+                <h2>Address Details</h2>
+                <h3>Telephone Number</h3>
+            </div>
+            <br />
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="/">Home</Navbar.Brand>
+                <Nav className="mr-auto">
+                    {/* <Nav.Link href="#home">Home</Nav.Link> */}
+                </Nav>
+            </Navbar>
+            <br />
             <Row>
                 <Col>
                     <Card className={classes.root} border="dark">
@@ -186,7 +205,6 @@ export default function MediaCard() {
                 </Col>
 
 
-
                 <Col>
                     <Card className={classes.root}>
                         <CardActionArea>
@@ -243,8 +261,6 @@ export default function MediaCard() {
                 </Col>
 
 
-
-
                 <Col>
                     <Card className={classes.root}>
                         <CardActionArea>
@@ -260,14 +276,16 @@ export default function MediaCard() {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
+                            {/* <Link to="/Vehicles">View */}
                             <Button
                                 variant="contained"
                                 color="primary"
-                                //onClick={}
+                                onClick={routeChangeTrans}
                                 className={classes.button}
                             >
                                 View
                             </Button>
+                            {/* </Link> */}
                         </CardActions>
                     </Card>
                 </Col>

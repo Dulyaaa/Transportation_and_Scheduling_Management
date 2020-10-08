@@ -1,58 +1,39 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
-import Vehicles from './components/Vehicles';
-import VehicleForm from './components/VehicleForm';
-import Notifier from './components/Notifier'
-import history from './history'
-import Vservices from './services/vehicle.service'
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from 'react-bootstrap/Navbar'
-import CardMedia from '@material-ui/core/CardMedia';
-import { Row, Col } from 'react-bootstrap';
-import { Button, Nav, FormControl } from 'react-bootstrap';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Card from './components/homepage/card';
-import Avatar from './components/homepage/avatar';
-import logo from './logo.svg';
+import TransportMain from './components/Transport/Main';
+import Vehicle from './components/Transport/Vehicles';
+import VehicleForm from './components/Transport/VehicleForm';
+import VehicleUpdate from './components/Transport/VehicleUpdate';
+import Requests from './components/Transport/Requests';
+import RequestForm from './components/Transport/requestForm';
 import './App.css';
 
 function App() {
   return (
 
-    <div className="App">
+    <div className="App" style={{padding: 10}}>
 
             <div>
-              <Row>
-                <Col>
-                  <Avatar />
-                </Col>
-                <Col><h1 style={{fontSize: 100,}}>C-four Industries</h1></Col>
-              </Row>
-            </div>
-            <br/>
-            <Navbar bg="dark" variant="dark">
-              <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-              <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
-              </Nav>
-            </Navbar>
-            <br />
-            <div>
-              <Card />
-            </div>
-            <div>
-            </div>
-
-//      <button onClick={() => history.push('./Vehicles')}>Transport</button>
-      <BrowserRouter>
+        <BrowserRouter>
         <Switch>
-          <Route exact path='/Vehicles' component={Vehicles} />
-          <Route exact path='/Vservices' component={Vservices} />
-          <Route exact path='/Notifier' component={Notifier} />
+          <Route exact path='/' component={Card} />
+          <Route exact path='/TransportMain' component={TransportMain} />
+          <Route exact path='/Requests' component={Requests} />
+            <Route exact path='/RequestForm' component={RequestForm} />
+          <Route exact path='/Vehicle' component={Vehicle} />
           <Route exact path='/VehicleForm' component={VehicleForm} />
+          <Route exact path='/VehicleUpdate/:id' component={VehicleUpdate} />
         </Switch>
-      </BrowserRouter>
+       </BrowserRouter>
+            </div>
+      <br />
+      <div>
+        <footer>
+          <hr/>
+          @Copyright© 2020
+        </footer>
+        </div>
 
     </div>
   );
