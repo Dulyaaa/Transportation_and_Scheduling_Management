@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import VehicleDataService from "../../services/vehicle.service";
+import jsPDF from 'jspdf';
 import '../../App.css'
 import { red } from "@material-ui/core/colors";
 
@@ -147,6 +148,21 @@ export default class VehicleUpdate extends Component {
             });
     }
 
+    jsPdfGenerator = () => {
+        var doc = new jsPDF('p', 'pt');
+
+        doc.text(20, 20, 'Vehicle details')
+
+        const {currentVehicle} = this.state;
+        
+        doc.setFont('helvetica')
+        doc.text(20, 60, 'vehicle number')
+        doc.text(20, 60, 'registe')
+
+        doc.save('vegicleDetails.pdf')
+
+    }
+
     render(){
 
         const{currentVehicle} = this.state;
@@ -244,7 +260,7 @@ export default class VehicleUpdate extends Component {
 
                         <button
                             className="badge badge-danger mr-2"
-                           // onClick={this.deleteTutorial}
+                           onClick={this.jsPdfGenerator}
                             style={{ fontSize: 18 }}
                            > Generate Report </button>
 
