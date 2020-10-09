@@ -100,7 +100,7 @@ class RequestForm extends Component {
             customerName: "William Hamilgton",
             customerAddress: "Raththanapitya, Borelasgamuwa",
             quantity: 300,
-            assignedVehicle: "WP AAA 1234",
+            assignedVehicle: "",
             requestedDate: "12/10/2020",
             transportedDate: "",
             status: false,

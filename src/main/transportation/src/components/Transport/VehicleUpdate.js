@@ -17,7 +17,6 @@ export default class VehicleUpdate extends Component {
         this.updateVehicle = this.updateVehicle.bind(this);
 
         this.state = {
-            currentVehicle: null,
             currentVehicle: {
                 id: null,
                 vehicleNumber: "",
@@ -227,7 +226,7 @@ export default class VehicleUpdate extends Component {
                                 <label style={{ fontSize: 20 }}>
                                     <strong>Status:</strong>
                                 </label>
-                                {currentVehicle.status ? "Available" : "Not Available"}
+                                {currentVehicle.status ? "Available" : " Not Available"}
                             </div>
                         </form>
 

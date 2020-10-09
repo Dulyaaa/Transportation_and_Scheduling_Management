@@ -85,7 +85,6 @@ export default class CustomizedTables extends Component {
 
     constructor(props) {
         super(props)
-
         this.retrieveVehicles = this.retrieveVehicles.bind(this);
         this.editVehicle = this.editVehicle.bind(this);
         this.deleteVehicle = this.deleteVehicle.bind(this);
@@ -175,6 +174,7 @@ export default class CustomizedTables extends Component {
                                 <div className={classes.root}>
                                     <Chip size="small"
                                             label={vehicle.status ? "Available" : "Not Available"}
+                                             style={vehicle.status ? { backgroundColor: 'green' } : { backgroundColor: 'red' }}
                                         color="primary"/>
                                 </div>
                             </StyledTableCell>

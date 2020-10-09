@@ -136,7 +136,9 @@ export default class CustomizedTables extends Component {
                                     <div className={classes.root}>
                                         <Chip size="small"
                                             label={request.status ? "Assigned" : "Not Assigned"}
-                                            color="primary"/>
+                                                color={request.status ? "primary"  : "secondary"}
+                                                //style={request.status ? { backgroundColor: 'green' } : { backgroundColor: 'red' }}
+                                                />
                                     </div>
                                 </StyledTableCell>
                                 <StyledTableCell align="right">

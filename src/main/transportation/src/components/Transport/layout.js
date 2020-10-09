@@ -90,8 +90,8 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 0,
         marginTop: 200,
-        marginLeft: 300,
-        //marginRight:200,
+        marginLeft: 250,
+        marginRight:200,
         marginBottom: 300,
         padding: theme.spacing(0),
         //height: 500
