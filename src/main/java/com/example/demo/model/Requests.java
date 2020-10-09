@@ -12,6 +12,7 @@ public class Requests {
     private String customerName;
     private String customerAddress;
     private int quantity;
+    private String assignedVehicle;
     private String requestedDate;
     private String transportedDate;
     private boolean status;
@@ -19,10 +20,11 @@ public class Requests {
     public Requests() {
     }
 
-    public Requests(String customerName, String customerAddress, int quantity, String requestedDate, String transportedDate, boolean status) {
+    public Requests(String customerName, String customerAddress, int quantity, String assignedVehicle, String requestedDate, String transportedDate, boolean status) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.quantity = quantity;
+        this.assignedVehicle = assignedVehicle;
         this.requestedDate = requestedDate;
         this.transportedDate = transportedDate;
         this.status = status;
@@ -54,6 +56,14 @@ public class Requests {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getAssignedVehicle() {
+        return assignedVehicle;
+    }
+
+    public void setAssignedVehicle(String assignedVehicle) {
+        this.assignedVehicle = assignedVehicle;
     }
 
     public String getRequestedDate() {

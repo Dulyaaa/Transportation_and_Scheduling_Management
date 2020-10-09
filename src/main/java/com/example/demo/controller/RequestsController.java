@@ -53,7 +53,7 @@ public class RequestsController {
     @PostMapping("/Requests")
     public ResponseEntity<Requests> createRequest(@RequestBody Requests requests) {
         try{
-            Requests _requests = requestsRepository.save(new Requests(requests.getCustomerName(), requests.getCustomerAddress(), requests.getQuantity(), requests.getRequestedDate(), requests.getTransportedDate(), false));
+            Requests _requests = requestsRepository.save(new Requests(requests.getCustomerName(), requests.getCustomerAddress(), requests.getQuantity(), requests.getAssignedVehicle(), requests.getRequestedDate(), requests.getTransportedDate(), false));
             return new ResponseEntity<>(_requests, HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,6 +71,7 @@ public class RequestsController {
             _request.setRequestedDate(requests.getRequestedDate());
             _request.setTransportedDate(requests.getTransportedDate());
             _request.setQuantity(requests.getQuantity());
+            _request.setAssignedVehicle(requests.getAssignedVehicle());
             _request.setStatus(requests.isStatus());
 
             return new ResponseEntity<>(requestsRepository.save(_request), HttpStatus.OK);

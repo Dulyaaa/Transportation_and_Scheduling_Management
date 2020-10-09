@@ -30,7 +30,8 @@ import Button from '@material-ui/core/Button';
 
 //import Home from './home';
 import Requests from './Requests';
-import RequestForm from './requestForm';
+import RequestForm from './RequestForm';
+import RequestAssign from './RequestAssign';
 import Vehicles from './Vehicles';
 import VehicleForm from './VehicleForm';
 import VehicleUpdate from './VehicleUpdate';
@@ -46,6 +47,7 @@ import VehicleUpdate from './VehicleUpdate';
 // import NewRequest from '../requests/newRequest';
 
 import { Card } from '@material-ui/core';
+
 
 const drawerWidth = 350;
 
@@ -220,6 +222,7 @@ function ResponsiveDrawer(props) {
                     {/* <Route exact path='/' component={Home} /> */}
                     <Route exact path='/Requests' component={Requests} />
                     <Route exact path='/requestForm' component={RequestForm} />
+                    <Route exact path='/RequestAssign/:id' component={RequestAssign} />
                     <Route exact path='/Vehicles' component={Vehicles} />
                     <Route exact path='/VehicleForm' component={VehicleForm} />
                     <Route exact path='/VehicleUpdate/:id' component={VehicleUpdate} />

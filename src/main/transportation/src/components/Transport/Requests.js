@@ -22,6 +22,10 @@ const StyledTableCell = withStyles((theme) => ({
         backgroundColor: theme.palette.common.black,
         color: theme.palette.common.white,
         fontSize: 20,
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingTop: 25,
+        paddingBottom: 25
     },
 
     body: {
@@ -35,6 +39,7 @@ const StyledTableRow = withStyles((theme) => ({
             //backgroundColor: theme.palette.action.hover,
             backgroundColor: theme.palette.action.focus,
         },
+        padding: 20
     },
 }))(TableRow);
 
@@ -48,7 +53,7 @@ const rows = [
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 1000,
+        minWidth: 100,
     },
     Fab: {
         margin: 0,
@@ -66,6 +71,7 @@ export default class CustomizedTables extends Component {
         super(props)
 
         this.retrieveRequests = this.retrieveRequests.bind(this);
+        this.assignRequest = this.assignRequest.bind(this);
 
         this.state = {
             requests: [],
@@ -88,6 +94,10 @@ export default class CustomizedTables extends Component {
         });
     }
 
+    assignRequest(id) {
+        this.props.history.push("/RequestAssign/" + id);
+    }
+
     render(){
     const classes = useStyles;
 
@@ -108,6 +118,7 @@ export default class CustomizedTables extends Component {
                             <StyledTableCell>Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</StyledTableCell>
                             <StyledTableCell align="center">Customer Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</StyledTableCell>
                             <StyledTableCell align="center">Quantity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</StyledTableCell>
+                            <StyledTableCell align="center">Requested Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</StyledTableCell>
                             <StyledTableCell align="center">Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</StyledTableCell>
                             <StyledTableCell align="center">Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</StyledTableCell>
                         </TableRow>
@@ -119,7 +130,8 @@ export default class CustomizedTables extends Component {
                             <StyledTableRow key={request.id}>
                                 <StyledTableCell component="th" scope="row">{request.customerName}</StyledTableCell>
                                 <StyledTableCell align="center">{request.customerAddress}</StyledTableCell>
-                                    <StyledTableCell align="center">{request.quantity}</StyledTableCell>
+                                <StyledTableCell align="center">{request.quantity}</StyledTableCell>
+                                <StyledTableCell align="center">{request.requestedDate}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     <div className={classes.root}>
                                         <Chip size="small"
@@ -129,7 +141,7 @@ export default class CustomizedTables extends Component {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
                                     <button className="btn btn-info">View</button>&nbsp;&nbsp;
-                                    <button className="btn btn-info">Assign</button>
+                                    <button className="btn btn-success" onClick={() => this.assignRequest(request.id)}>Assign</button>
                                 </StyledTableCell>
                             </StyledTableRow>
                         )}

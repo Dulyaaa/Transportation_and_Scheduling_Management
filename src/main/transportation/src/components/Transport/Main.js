@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import Drivers from './components/drivers';
 // import Vehicles from './components/vehicles/index';
 // import VehicleForm from './components/vehicles/vehicleForm';
-import Layout from './layout';
+import Layout from './Layout';
 import Vehicles from '../Transport/Vehicles';
 import VehicleForm from '../Transport/VehicleForm';
 // import Assign from './components/assign';
