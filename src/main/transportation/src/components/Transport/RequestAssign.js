@@ -263,18 +263,7 @@ export default class RequestAssign extends Component {
                             </div>
 
                             <div className="form-group">
-                                <strong> <label htmlFor="transportedDate" style={{ fontSize: 20 }}>Transported Date:</label></strong>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="transportedDate"
-                                    value={currentRequest.transportedDate}
-                                    onChange={this.onChangetransportedDate} 
-                                    />
-                            </div>
-
-                            <div className="form-group">
-                                <strong> <label htmlFor="assignedVehicle" style={{ fontSize: 20 }}>Assigne Vehicle Number:</label></strong>
+                                <strong> <label htmlFor="assignedVehicle" style={{ fontSize: 20 }}>Assign Vehicle Number:</label></strong>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -284,8 +273,21 @@ export default class RequestAssign extends Component {
                                 />
                             </div>
 
+                                    <div className="form-group">
+                                        <strong> <label htmlFor="transportedDate" style={{ fontSize: 20 }}>Transported Date:</label></strong>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="transportedDate"
+                                            value={currentRequest.transportedDate}
+                                            onChange={this.onChangetransportedDate}
+                                        />
+                                    </div>
+
                         </form>
 
+                        <br/> <br/>
+                        
                         {currentRequest.status ? (
                             <button
                                 className="badge badge-primary mr-2"
