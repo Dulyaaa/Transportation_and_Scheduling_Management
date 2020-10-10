@@ -22,7 +22,7 @@ function App() {
           <Route exact path='/' component={Card} />
           <Route exact path='/TransportMain' component={TransportMain} />
           <Route exact path='/Requests' component={Requests} />
-          <Route exact path='/RequestForm' component={RequestForm} />
+          <Route exact path='/RequestForm/:id' component={RequestForm} />
           <Route exact path='/RequestAssign/:id' component={RequestAssign} />
           <Route exact path='/RequestView/:id' component={RequestView} />
           <Route exact path='/Vehicle' component={Vehicle} />

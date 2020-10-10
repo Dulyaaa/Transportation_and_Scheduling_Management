@@ -32,6 +32,7 @@ import Button from '@material-ui/core/Button';
 import Requests from './Requests';
 import RequestForm from './RequestForm';
 import RequestAssign from './RequestAssign';
+import RequestView from './RequestView';
 import Vehicles from './Vehicles';
 import VehicleForm from './VehicleForm';
 import VehicleUpdate from './VehicleUpdate';
@@ -223,6 +224,7 @@ function ResponsiveDrawer(props) {
                     <Route exact path='/Requests' component={Requests} />
                     <Route exact path='/requestForm' component={RequestForm} />
                     <Route exact path='/RequestAssign/:id' component={RequestAssign} />
+                    <Route exact path='/RequestView/:id' component={RequestView} />
                     <Route exact path='/Vehicles' component={Vehicles} />
                     <Route exact path='/VehicleForm' component={VehicleForm} />
                     <Route exact path='/VehicleUpdate/:id' component={VehicleUpdate} />

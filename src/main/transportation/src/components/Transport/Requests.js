@@ -98,6 +98,10 @@ export default class CustomizedTables extends Component {
         this.props.history.push("/RequestAssign/" + id);
     }
 
+    viewRequest(id) {
+        this.props.history.push("/RequestView/" + id);
+    }
+
     render(){
     const classes = useStyles;
 
@@ -142,7 +146,7 @@ export default class CustomizedTables extends Component {
                                     </div>
                                 </StyledTableCell>
                                 <StyledTableCell align="right">
-                                    <button className="btn btn-info">View</button>&nbsp;&nbsp;
+                                        <button className="btn btn-info" onClick={() => this.viewRequest(request.id)}>View</button>&nbsp;&nbsp;
                                     <button className="btn btn-success" onClick={() => this.assignRequest(request.id)}>Assign</button>
                                 </StyledTableCell>
                             </StyledTableRow>

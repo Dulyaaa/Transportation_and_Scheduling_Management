@@ -14,6 +14,7 @@ class RequestForm extends Component {
         this.addDetails = this.addDetails.bind(this);
 
         this.state = {
+            date: new Date().toLocaleString(),
             id: null,
             customerName: "",
             customerAddress: "",
@@ -101,7 +102,7 @@ class RequestForm extends Component {
             customerAddress: "Raththanapitya, Borelasgamuwa",
             quantity: 300,
             assignedVehicle: "",
-            requestedDate: "12/10/2020",
+            requestedDate: this.state.date,
             transportedDate: "",
             status: false,
         })
@@ -186,7 +187,7 @@ class RequestForm extends Component {
                                     className="form-control"
                                     id="requestedDate"
                                     required
-                                    value={this.state.requestedDate}
+                                    value={this.state.date}
                                     onChange={this.onchangerequestedDate}
                                     name="requestedDate"
                                     style={{ fontSize: 25 }}
