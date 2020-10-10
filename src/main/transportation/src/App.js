@@ -7,6 +7,7 @@ import VehicleForm from './components/Transport/VehicleForm';
 import VehicleUpdate from './components/Transport/VehicleUpdate';
 import Requests from './components/Transport/Requests';
 import RequestForm from './components/Transport/RequestForm';
+import RequestView from './components/Transport/RequestView';
 import './App.css';
 import RequestAssign from './components/Transport/RequestAssign';
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path='/Requests' component={Requests} />
           <Route exact path='/RequestForm' component={RequestForm} />
           <Route exact path='/RequestAssign/:id' component={RequestAssign} />
+          <Route exact path='/RequestView/:id' component={RequestView} />
           <Route exact path='/Vehicle' component={Vehicle} />
           <Route exact path='/VehicleForm' component={VehicleForm} />
           <Route exact path='/VehicleUpdate/:id' component={VehicleUpdate} />

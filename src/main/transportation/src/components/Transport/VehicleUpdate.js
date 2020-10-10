@@ -18,6 +18,8 @@ export default class VehicleUpdate extends Component {
         this.updateVehicle = this.updateVehicle.bind(this);
 
         this.state = {
+            date: new Date().toLocaleString(), 
+
             currentVehicle: {
                 id: null,
                 vehicleNumber: "",
@@ -25,7 +27,7 @@ export default class VehicleUpdate extends Component {
                 type: "",
                 status: false,
                 capacity: "",
-                price: 0
+                price: 0,
             },
 
             message: ""
@@ -149,17 +151,50 @@ export default class VehicleUpdate extends Component {
     }
 
     jsPdfGenerator = () => {
-        var doc = new jsPDF('p', 'pt');
+        var doc = new jsPDF();
 
-        doc.text(20, 20, 'Vehicle details')
+        // doc.text(50, 50, 'Hello world!')
 
-        const {currentVehicle} = this.state;
+        // doc.text(20, 20, 'Vehicle details')
         
-        doc.setFont('helvetica')
-        doc.text(20, 60, 'vehicle number')
-        doc.text(20, 60, 'registe')
+        // doc.setFont('helvetica')
+        // doc.text(20, 60, this.state.currentVehicle.vehicleNumber)
 
-        doc.save('vegicleDetails.pdf')
+
+        var imgData = '/logo.png'
+        doc.addImage(imgData, 'png', 30, 45, 40, 0)
+        doc.rect(20, 20, doc.internal.pageSize.width - 40, doc.internal.pageSize.height - 40, 'S');
+        doc.setFontSize(11)
+        doc.text(145, 50, 'Beligammana, Mawanella')
+        doc.text(145, 55, '+94 778 357 755')
+        doc.text(145, 60, '+94 352 050 255')
+        doc.text(145, 65, 'cfour@sltnet.lk')
+        doc.setFontSize(20)
+        doc.text(70, 100, 'Vehicle Cost Report')
+        doc.line(65, 102, 140, 102)
+        doc.setFontSize(15)
+        doc.text(40, 130, 'Vehicle Details')
+        doc.setFontSize(12)
+        doc.text(40, 145, 'Vehicle Number:')
+        doc.text(40, 155, 'Vehicle Registered Year:')
+        doc.text(40, 165, 'Vehicle Type:')
+        doc.text(40, 175, 'Vehicle Capacity:')
+        doc.text(40, 185, 'Price*:')
+        doc.text(145, 220, 'Certified By:')
+        doc.text(145, 225, 'Transport Admin')
+        doc.setFontSize(11)
+        doc.text(110, 145, this.state.currentVehicle.vehicleNumber)
+        doc.text(110, 155, `${this.state.currentVehicle.registeredYear}`)
+        doc.text(110, 165, this.state.currentVehicle.type)
+        doc.text(110, 175, `${this.state.currentVehicle.capacity}`)
+        doc.setTextColor(0, 190, 0)
+        doc.text(110, 185, 'Rs: ' + `${this.state.currentVehicle.price}`)
+        doc.setFontSize(9)
+        doc.setTextColor(255, 0, 0)
+        doc.text(30, 250, '* The given price was until ' + `${this.state.date}` + ' from the last report generating.')
+
+        doc.save(this.state.currentVehicle.vehicleNumber+'Report.pdf')
+
 
     }
 
