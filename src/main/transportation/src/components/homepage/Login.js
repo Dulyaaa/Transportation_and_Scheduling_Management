@@ -39,25 +39,25 @@ export default class Login extends Component {
                 this.props.history.push("/TransportMain");
             }
             else if (this.state.username === "Customer" && this.state.password === "12345") {
-                this.props.history.push("/");
+                this.props.history.push("/Customer");
             }
             else if (this.state.username === "Employee" && this.state.password === "12345") {
-                this.props.history.push("/");
+                this.props.history.push("/Employee");
             }
             else if (this.state.username === "Supplier" && this.state.password === "12345") {
-                this.props.history.push("/");
+                this.props.history.push("/Supplier");
             }
             else if (this.state.username === "RawMaterial" && this.state.password === "12345") {
-               this.props.history.push("/");
+               this.props.history.push("/RawMaterial");
             }
             else if (this.state.username === "FinalProduct" && this.state.password === "12345") {
-                this.props.history.push("/");
+                this.props.history.push("/FinalProduct");
             }
             else if (this.state.username === "Payroll" && this.state.password === "12345") {
-               this.props.history.push("/");
+               this.props.history.push("/Payroll");
             }
             else if (this.state.username === "Utilities" && this.state.password === "12345") {
-               this.props.history.push("/");
+               this.props.history.push("/Utilities");
             }
 
             else{
@@ -74,8 +74,9 @@ export default class Login extends Component {
                 <h1 style={{ fontSize: 60, padding: 30 }}>C-four Industries</h1>
             </div>
                 <div style={{ marginLeft: 1300 }}>
-                    <h2>Address Details</h2>
-                    <h3>Telephone Number</h3>
+                    <h2>Beligammana, Mawanella</h2>
+                    <h3>+94 352 050 255</h3>
+                    <h4>cfour@sltnet.lk</h4>
                 </div>
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand href="/">Home</Navbar.Brand>
@@ -88,7 +89,7 @@ export default class Login extends Component {
                 <h3>Authentication</h3>
                 <br/><br/>
                 <div className="form-group">
-                    <label>UserName</label>
+                    <label>User Name</label>
                     <input id="username" type="username" className="form-control" placeholder="Enter username" value={this.state.username} onChange={this.onChangeuserName}/>
                 </div>
 

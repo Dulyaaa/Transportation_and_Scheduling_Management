@@ -190,7 +190,7 @@ export default class VehicleUpdate extends Component {
         doc.text(40, 175, 'Vehicle Capacity:')
         doc.text(40, 185, 'Price*:')
         doc.text(145, 220, 'Certified By:')
-        doc.text(145, 225, 'Transport Admin')
+        doc.text(145, 225, 'Head of Transport Department')
         doc.setFontSize(11)
         doc.text(110, 145, this.state.currentVehicle.vehicleNumber)
         doc.text(110, 155, `${this.state.currentVehicle.registeredYear}`)
