@@ -12,7 +12,7 @@ import RequestDataService from "../../services/request.service";
 import VehicleDataService from "../../services/vehicle.service";
 import '../../App.css'
 import { red } from "@material-ui/core/colors";
-import { Col, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -77,6 +77,8 @@ export default class RequestAssign extends Component {
 
 
         this.state = {
+            date: new Date().toLocaleString(),
+
             vehicles: [],
 
             currentRequest: {
@@ -86,7 +88,7 @@ export default class RequestAssign extends Component {
                 quantity: "",
                 assignedVehicle: "",
                 requestedDate: "",
-                transportedDate: "",
+                transportedDate: new Date().toLocaleString(),
                 status: false,
             },
 
@@ -236,30 +238,35 @@ export default class RequestAssign extends Component {
                         <h3>Order Details
                         </h3><br /><br />
                         <form>
+                            <Form>
                             <div className="form-group">
                                 <label style={{ fontSize: 20 }}>
                                     <strong>Customer Name:</strong>
                                 </label>{" "}
-                                <p style={{fontSize: 20}}>{currentRequest.customerName}</p>
+                                    <Form.Control type="text" placeholder={currentRequest.customerName} readOnly />
+                                {/* <p style={{fontSize: 20}}>{currentRequest.customerName}</p> */}
                             </div>
                             <div className="form-group">
                                 <label style={{ fontSize: 20 }}>
                                     <strong>Customer Address:</strong>
                                 </label>{" "}
-                                <p style={{fontSize: 20}}>{currentRequest.customerAddress}</p>
+                                    <Form.Control type="text" placeholder={currentRequest.customerAddress} readOnly />
+                                {/* <p style={{fontSize: 20}}>{currentRequest.customerAddress}</p> */}
                             </div>
                             <div>
                                 <label className="form-group" style={{ fontSize: 20 }}>
                                     <strong>Quantity:</strong>
                                 </label>{" "}
-                                <p style={{fontSize: 20}}>{currentRequest.quantity}</p>
+                                    <Form.Control type="text" placeholder={currentRequest.quantity} readOnly />
+                                {/* <p style={{fontSize: 20}}>{currentRequest.quantity}</p> */}
                             </div>
 
                             <div className="form-group">
                                 <label style={{ fontSize: 20 }}>
                                     <strong>Status:</strong>
                                 </label>
-                                <p style={{fontSize: 20}}>{currentRequest.status ? "Assigned" : "Not Assigned"}</p>
+                                    <Form.Control type="text" placeholder={currentRequest.status ? "Assigned" : "Not Assigned"} readOnly />
+                                {/* <p style={{fontSize: 20}}>{currentRequest.status ? "Assigned" : "Not Assigned"}</p> */}
                             </div>
 
                             <div className="form-group">
@@ -283,7 +290,7 @@ export default class RequestAssign extends Component {
                                             onChange={this.onChangetransportedDate}
                                         />
                                     </div>
-
+                        </Form>
                         </form>
 
                         <br/> <br/>
@@ -306,14 +313,15 @@ export default class RequestAssign extends Component {
                             onClick={this.updateRequest}
                             style={{ fontSize: 18 }} > Save Changes </button>
                         <br /><br />
-                        <p style={{ fontSize: 25 }}>
+                        <div style={{backgroundColor: "yellow"}}><p style={{ fontSize: 25 }}>
                             {this.state.message}
                             </p>
+                            </div>
                     </div>
                 ) : (
                         <div>
                             <br />
-                            <p>Please click on a Tutorial...</p>
+                            <p>None...</p>
                         </div>
                      )} 
                 </Col>

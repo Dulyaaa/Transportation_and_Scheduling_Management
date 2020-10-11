@@ -8,6 +8,7 @@ import VehicleUpdate from './components/Transport/VehicleUpdate';
 import Requests from './components/Transport/Requests';
 import RequestForm from './components/Transport/RequestForm';
 import RequestView from './components/Transport/RequestView';
+import Login from './components/homepage/Login';
 import './App.css';
 import RequestAssign from './components/Transport/RequestAssign';
 
@@ -20,6 +21,7 @@ function App() {
         <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Card} />
+          <Route exact path='/Login' component={Login} />
           <Route exact path='/TransportMain' component={TransportMain} />
           <Route exact path='/Requests' component={Requests} />
           <Route exact path='/RequestForm/:id' component={RequestForm} />

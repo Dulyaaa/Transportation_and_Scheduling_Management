@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import Vehicles from './components/vehicles/index';
 // import VehicleForm from './components/vehicles/vehicleForm';
 import Layout from './Layout';
+import Home from './Home'
 import Vehicles from '../Transport/Vehicles';
 import VehicleForm from '../Transport/VehicleForm';
 // import Assign from './components/assign';
@@ -15,25 +16,15 @@ import VehicleForm from '../Transport/VehicleForm';
 class Main extends Component {
     render() {
         return (
+            <div>
             <BrowserRouter>
                 <Layout>
-                   <div>
-                        <h1>Welcome to Transport Department</h1>
-                   </div>
-
                     <Switch>
-                        {/* <Route exact path='/' component={Vehicles} />
-                        <Route exact path='/Vehicles' component={Vehicles} />
-                        <Route exact path='/VehicleForm' component={VehicleForm} />
-                        <Route exact path='/drivers' component={Drivers} />
-                        <Route exact path='/vehicles' component={Vehicles} />
-                        <Route exact path='/assign' component={Assign} />
-                        <Route exact path='/vehicleForm' component={VehicleForm} />
-                        <Route exact path='/requestForm' component={RequestForm} />
-                        <Route exact path='/newRequest/:id' component={NewRequest} /> */}
+                        {/* <Route exact path='/' component={Home} /> */}
                     </Switch>
                 </Layout>
             </BrowserRouter>
+            </div>
         );
     }
 }

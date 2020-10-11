@@ -12,6 +12,7 @@ class RequestForm extends Component {
         this.saveRequest = this.saveRequest.bind(this);
         this.newRequest = this.newRequest.bind(this);
         this.addDetails = this.addDetails.bind(this);
+        this.handleFormValidation = this.handleFormValidation.bind(this);
 
         this.state = {
             date: new Date().toLocaleString(),
@@ -20,11 +21,13 @@ class RequestForm extends Component {
             customerAddress: "",
             quantity: "",
             assignedVehicle: "",
-            requestedDate: "",
+            requestedDate: new Date().toLocaleString(),
             transportedDate: "",
             status: false,
 
-            submitted: false
+            submitted: false,
+
+            formErrors: {}
         };
     }
 
@@ -53,32 +56,35 @@ class RequestForm extends Component {
     }
 
     saveRequest() {
-        var data = {
-            customerName: this.state.customerName,
-            customerAddress: this.state.customerAddress,
-            quantity: this.state.quantity,
-            requestedDate: this.state.requestedDate,
-        };
 
-        RequestDataService.create(data)
-        .then(response => {
-            this.setState({
-                id: response.data.id,
-                customerName: response.data.customerName,
-                customerAddress: response.data.customerAddress,
-                quantity: response.data.quantity,
-                assignedVehicle: response.data.assignedVehicle,
-                requestedDate: response.data.requestedDate,
-                status: response.data.status,
-                transportedDate: response.data.transportedDate,
+        if(this.handleFormValidation()){
+            var data = {
+                customerName: this.state.customerName,
+                customerAddress: this.state.customerAddress,
+                quantity: this.state.quantity,
+                requestedDate: this.state.requestedDate,
+            };
 
-                submitted: true
-            });
-            console.log(response.data);
-        })
-        .catch(e => {
-            console.log(e);
-        });
+            RequestDataService.create(data)
+                .then(response => {
+                    this.setState({
+                        id: response.data.id,
+                        customerName: response.data.customerName,
+                        customerAddress: response.data.customerAddress,
+                        quantity: response.data.quantity,
+                        assignedVehicle: response.data.assignedVehicle,
+                        requestedDate: response.data.requestedDate,
+                        status: response.data.status,
+                        transportedDate: response.data.transportedDate,
+
+                        submitted: true
+                    });
+                    console.log(response.data);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
     }
 
     newRequest() {
@@ -108,7 +114,41 @@ class RequestForm extends Component {
         })
     }
 
+    handleFormValidation() {
+        const { customerName, customerAddress, quantity } = this.state;
+
+        let formErrors = {};
+        let formIsValid = true;
+
+        if (!customerName) {
+            formIsValid = false;
+            formErrors["customerNameError"] = "*Customer Name is required.";
+        }
+
+        if (!customerAddress) {
+            formIsValid = false;
+            formErrors["customerAddressError"] = "*Customer Address is required.";
+        }
+
+        if (!quantity) {
+            formIsValid = false;
+            formErrors["quantityError"] = "*Quantity is required.";
+        }
+        else {
+            var pattern = /^[0-9]*$/;
+            if (!pattern.test(quantity)) {
+                formIsValid = false;
+                formErrors["quantityError"] = "*Please enter numbers only."
+            }
+        }
+
+        this.setState({ formErrors: formErrors });
+        return formIsValid
+    }
+
     render() {
+        const {customerNameError, customerAddressError, quantityError} = this.state.formErrors;
+
         return (
             <div className="submit-form" style={{ width: 900 }}>
                 {this.state.submitted ? (
@@ -122,19 +162,6 @@ class RequestForm extends Component {
                     </div>
                 ) : (
                         <div Style="width:900px;">
-                            {/* <div className="form-group">
-                <InputGroup className="mb-3">
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id="inputGroup-sizing-default">Vehicle Number</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <FormControl
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    onChange ={this.onChangeTitle}
-                    value = {this.state.title}
-                  />
-                </InputGroup>
-            </div> */}
 
                             <div className="form-group">
                                 <h2>ADD NEW ORDER DETAILS</h2>
@@ -148,8 +175,10 @@ class RequestForm extends Component {
                                     value={this.state.customerName}
                                     onChange={this.onChangecustomerName}
                                     name="customerName"
-                                    style={{ fontSize: 25 }}
-                                />
+                                    style={{ fontSize: 25 }} />
+                                <div className={customerNameError ? 'showError' : ''}>
+                                    {customerNameError && <div style={{ color: "red", paddingBottom: 10 }}>{customerNameError}</div>}
+                                </div>
                             </div>
 
                             <div className="form-group">
@@ -162,8 +191,10 @@ class RequestForm extends Component {
                                     value={this.state.customerAddress}
                                     onChange={this.onchangecustomerAddress}
                                     name="customerAddress"
-                                    style={{ fontSize: 25 }}
-                                />
+                                    style={{ fontSize: 25 }}/>
+                                <div className={customerAddressError ? 'showError' : ''}>
+                                    {customerAddressError && <div style={{ color: "red", paddingBottom: 10 }}>{customerAddressError}</div>}
+                                </div>
                             </div>
 
                             <div className="form-group">
@@ -176,8 +207,10 @@ class RequestForm extends Component {
                                     value={this.state.quantity}
                                     onChange={this.onchangequantity}
                                     name="quantity"
-                                    style={{ fontSize: 25 }}
-                                />
+                                    style={{ fontSize: 25 }} />
+                                <div className={quantityError ? 'showError' : ''}>
+                                    {quantityError && <div style={{ color: "red", paddingBottom: 10 }}>{quantityError}</div>}
+                                </div>
                             </div>
 
                             <div className="form-group">
