@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import VehicleDataService from "../../services/vehicle.service";
 import jsPDF from 'jspdf';
+import { Row, Col } from 'react-bootstrap';
 import '../../App.css'
 import { red } from "@material-ui/core/colors";
+import { Form } from "react-bootstrap";
 
 export default class VehicleUpdate extends Component {
 
@@ -105,6 +107,9 @@ export default class VehicleUpdate extends Component {
             })
             .catch(e => {
                 console.log(e);
+                this.setState({
+                    message: "Can't get the details."
+                });
             });
     }
 
@@ -147,10 +152,14 @@ export default class VehicleUpdate extends Component {
             })
             .catch(e => {
                 console.log(e);
+                this.setState({
+                    message: "Can't update the details."
+                });
             });
     }
 
     jsPdfGenerator = () => {
+
         var doc = new jsPDF();
 
         // doc.text(50, 50, 'Hello world!')
@@ -181,7 +190,7 @@ export default class VehicleUpdate extends Component {
         doc.text(40, 175, 'Vehicle Capacity:')
         doc.text(40, 185, 'Price*:')
         doc.text(145, 220, 'Certified By:')
-        doc.text(145, 225, 'Transport Admin')
+        doc.text(145, 225, 'Head of Transport Department')
         doc.setFontSize(11)
         doc.text(110, 145, this.state.currentVehicle.vehicleNumber)
         doc.text(110, 155, `${this.state.currentVehicle.registeredYear}`)
@@ -193,8 +202,9 @@ export default class VehicleUpdate extends Component {
         doc.setTextColor(255, 0, 0)
         doc.text(30, 250, '* The given price was until ' + `${this.state.date}` + ' from the last report generating.')
 
-        doc.save(this.state.currentVehicle.vehicleNumber+'Report.pdf')
+        doc.save(this.state.currentVehicle.vehicleNumber+' Report.pdf')
 
+        alert("Make sure to update the price into zero (Price: Rs.0).")
 
     }
 
@@ -204,16 +214,21 @@ export default class VehicleUpdate extends Component {
 
         return(
 
-            <div>
+            <div style={{marginLeft: 300}}>
+               
                 {currentVehicle ? (
-                    <div className="edit-form" style={{width: 500}}>
+                    <div className="edit-form" style={{ width: 500 }}>
+                         {/* <img src="./transport.png" height="400" width="400" /> */}
                         <h3>Vehicle Details of "{currentVehicle.vehicleNumber}"</h3><br/><br/>
                         <form>
+                            <Form>
                             <div className="form-group">
                                 <label style={{fontSize: 20}}>
                                     <strong>Vehicle Number:</strong>
                                 </label>{" "}
-                                {currentVehicle.vehicleNumber}
+                               
+                                    <Form.Control type="text" placeholder={currentVehicle.vehicleNumber} readOnly />
+                               {/* <h4> {currentVehicle.vehicleNumber}</h4> */}
                                 {/* <label htmlFor="vehicleNumber">Vehicle Number</label>
                                 <input
                                     type="text"
@@ -227,7 +242,8 @@ export default class VehicleUpdate extends Component {
                                 <label style={{ fontSize: 20 }}>
                                     <strong>Registered Year:</strong>
                                 </label>{" "}
-                               {currentVehicle.registeredYear}
+                                <Form.Control type="text" placeholder={currentVehicle.registeredYear} readOnly />
+                              {/* <h4> {currentVehicle.registeredYear}</h4> */}
                                 {/* <label htmlFor="description">Description</label>
                                 <input
                                     type="text"
@@ -241,7 +257,8 @@ export default class VehicleUpdate extends Component {
                                 <label className="form-group" style={{ fontSize: 20 }}>
                                     <strong>Type:</strong>
                                 </label>{" "}
-                                {currentVehicle.type}
+                                <Form.Control type="text" placeholder={currentVehicle.type} readOnly />
+                               {/* <h4> {currentVehicle.type}</h4> */}
                                 {/* <label htmlFor="description">Description</label>
                                 <input
                                     type="text"
@@ -277,8 +294,10 @@ export default class VehicleUpdate extends Component {
                                 <label style={{ fontSize: 20 }}>
                                     <strong>Status:</strong>
                                 </label>
-                                {currentVehicle.status ? "Available" : " Not Available"}
+                                <Form.Control type="text" placeholder={currentVehicle.status ? "Available" : "Not Available"} readOnly />
+                               {/* <h4> {currentVehicle.status ? "Available" : " Not Available"}</h4> */}
                             </div>
+                            </Form>
                         </form>
 
                         {currentVehicle.status ? (
@@ -293,24 +312,26 @@ export default class VehicleUpdate extends Component {
                                     style={{ fontSize: 18 }} >Available</button>
                             )}
 
-                        <button
-                            className="badge badge-danger mr-2"
-                           onClick={this.jsPdfGenerator}
-                            style={{ fontSize: 18 }}
-                           > Generate Report </button>
+                                <button
+                                    className="badge badge-danger mr-2"
+                                onClick={this.jsPdfGenerator}
+                                    style={{ fontSize: 18 }}
+                                > Generate Report </button>
 
-                        <button
-                            type="submit"
-                            className="badge badge-success"
-                            onClick={this.updateVehicle}
-                            style={{ fontSize: 18 }} > Update </button>
+                                <button
+                                    type="submit"
+                                    className="badge badge-success"
+                                    onClick={this.updateVehicle}
+                                    style={{ fontSize: 18 }} > Update </button>
             <br/><br/>
+                        <div style={{backgroundColor: "yellow"}}>
                         <p style={{ fontSize: 25 }}>{this.state.message}</p>
-                    </div>
+                        </div>
+                         </div>
                 ) : (
                         <div>
                             <br />
-                            <p>Please click on a Tutorial...</p>
+                            <p>Please click on a Vehicle...</p>
                         </div>
                     )}
             </div>

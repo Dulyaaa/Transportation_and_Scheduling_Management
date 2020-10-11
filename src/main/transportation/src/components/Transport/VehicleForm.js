@@ -15,6 +15,7 @@ export default class VehicleForm extends Component {
     this.saveVehicle = this.saveVehicle.bind(this);
     this.newVehicle = this.newVehicle.bind(this);
     this.addDetails = this.addDetails.bind(this);
+    this.handleFormValidation = this.handleFormValidation.bind(this);
 
     this.state = {
       id: null,
@@ -25,7 +26,9 @@ export default class VehicleForm extends Component {
       price: 0,
       status: false,
 
-      submitted: false
+      submitted: false,
+
+      formErrors: {}
     };
   }
 
@@ -54,30 +57,34 @@ export default class VehicleForm extends Component {
   }
 
   saveVehicle() {
-    var data = {
-      vehicleNumber: this.state.vehicleNumber,
-      registeredYear: this.state.registeredYear,
-      type: this.state.type,
-      capacity: this.state.capacity,
-    };
 
-    VehicleDataService.create(data)
-      .then(response => {
-        this.setState({
-          id: response.data.id,
-          vehicleNumber: response.data.vehicleNumber,
-          registeredYear: response.data.registeredYear,
-          type: response.data.type,
-          capacity: response.data.capacity,
-          status: response.data.status,
+    if(this.handleFormValidation()){
+        var data = {
+          vehicleNumber: this.state.vehicleNumber,
+          registeredYear: this.state.registeredYear,
+          type: this.state.type,
+          capacity: this.state.capacity,
+        };
 
-          submitted: true
+        VehicleDataService.create(data)
+          .then(response => {
+            this.setState({
+              id: response.data.id,
+              vehicleNumber: response.data.vehicleNumber,
+              registeredYear: response.data.registeredYear,
+              type: response.data.type,
+              capacity: response.data.capacity,
+              status: response.data.status,
+
+              submitted: true
+          });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
         });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+  }
+  
   }
 
   newVehicle() {
@@ -106,7 +113,53 @@ export default class VehicleForm extends Component {
     })
   }
 
+  handleFormValidation() {
+    const {vehicleNumber, registeredYear, type, capacity} = this.state;
+
+    let formErrors = {};
+    let formIsValid = true;
+
+    if (!vehicleNumber) {
+      formIsValid = false;
+      formErrors ["vehicleNumberError"] = "*Vehicle Number is required.";
+    }
+
+    if(!registeredYear) {
+      formIsValid = false;
+      formErrors ["registeredYearError"] = "*Registered Year is required.";
+    }
+
+    if(!type) {
+      formIsValid =false;
+      formErrors ["typeError"] = "*Vehicle Type is required.";
+    }
+    else{
+      var pattern = /^[a-zA-Z ]*$/ ;
+      if(!pattern.test(type)){
+        formIsValid = false;
+        formErrors["typeError"] = "*Please enter alphabet characters only."
+      }
+    }
+
+    if (!capacity) {
+      formIsValid = false;
+      formErrors["capacityError"] = "*Vehicle Capacity is required.";
+    }
+    else {
+      var pattern = /^[0-9]*$/;
+      if (!pattern.test(capacity)) {
+        formIsValid = false;
+        formErrors["capacityError"] = "*Please enter numbers only."
+      }
+    }
+
+    this.setState({ formErrors: formErrors});
+    return formIsValid
+  }
+
   render() {
+    const {vehicleNumberError, registeredYearError, typeError, capacityError} = this.state.formErrors;
+
     return (
       <div className="submit-form" style={{ width: 900 }}>
         {this.state.submitted ? (
@@ -144,8 +197,10 @@ export default class VehicleForm extends Component {
                   value={this.state.vehicleNumber}
                   onChange={this.onChangevehicleNumber}
                   name="vehicleNumber"
-                  style={{fontSize: 25}}
-                />
+                  style={{fontSize: 25}}/>
+                 <div className={vehicleNumberError ? 'showError' : ''}>
+                   {vehicleNumberError && <div style={{color:"red", paddingBottom: 10}}>{vehicleNumberError}</div>}
+                 </div>
               </div>
 
               <div className="form-group">
@@ -160,6 +215,9 @@ export default class VehicleForm extends Component {
                   name="registeredYear"
                   style={{ fontSize: 25}}
                 />
+                <div className={vehicleNumberError ? 'showError' : ''}>
+                  {vehicleNumberError && <div style={{ color: "red", paddingBottom: 10 }}>{registeredYearError}</div>}
+                </div>
               </div>
 
               <div className="form-group">
@@ -174,6 +232,9 @@ export default class VehicleForm extends Component {
                   name="type"
                   style={{ fontSize: 25 }}
                 />
+                <div className={vehicleNumberError ? 'showError' : ''}>
+                  {vehicleNumberError && <div style={{ color: "red", paddingBottom: 10 }}>{typeError}</div>}
+                </div>
               </div>
 
               <div className="form-group">
@@ -188,6 +249,9 @@ export default class VehicleForm extends Component {
                   name="capacity"
                   style={{ fontSize: 25 }}
                 />
+                <div className={vehicleNumberError ? 'showError' : ''}>
+                  {vehicleNumberError && <div style={{ color: "red", paddingBottom: 10 }}>{capacityError}</div>}
+                </div>
               </div>
 
               <button onClick={this.saveVehicle} className="btn btn-success" style={{ fontSize: 23, width: 250}}>

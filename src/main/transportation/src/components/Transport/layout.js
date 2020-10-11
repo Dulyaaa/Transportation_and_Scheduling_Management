@@ -28,7 +28,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Nav } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 
-//import Home from './home';
+import Home from './Home';
 import Requests from './Requests';
 import RequestForm from './RequestForm';
 import RequestAssign from './RequestAssign';
@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flexGrow: 0,
-        marginTop: 200,
+        marginTop: 100,
         marginLeft: 250,
         marginRight:200,
         marginBottom: 300,
@@ -130,12 +130,12 @@ function ResponsiveDrawer(props) {
             <Divider />
             <List>
                 <List component="nav">
-                    {/* <ListItem component={NavLink} to="/" button>
+                    <ListItem component={NavLink} to="/Home" button>
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
                         <ListItemText primary="Home" />
-                    </ListItem> */}
+                    </ListItem>
                     <ListItem component={NavLink} to="/Requests" button>
                         <ListItemIcon>
                             <ListIcon />
@@ -220,7 +220,7 @@ function ResponsiveDrawer(props) {
             <main className={classes.content}>
                 <div>
                 <Switch>
-                    {/* <Route exact path='/' component={Home} /> */}
+                    <Route exact path='/Home' component={Home} />
                     <Route exact path='/Requests' component={Requests} />
                     <Route exact path='/requestForm' component={RequestForm} />
                     <Route exact path='/RequestAssign/:id' component={RequestAssign} />
@@ -228,16 +228,6 @@ function ResponsiveDrawer(props) {
                     <Route exact path='/Vehicles' component={Vehicles} />
                     <Route exact path='/VehicleForm' component={VehicleForm} />
                     <Route exact path='/VehicleUpdate/:id' component={VehicleUpdate} />
-                    {/* <Route exact path='/requests' component={Requests} />
-                    <Route exact path='/vehicles' component={Vehicles} />
-                    <Route exact path='/drivers' component={Drivers} />
-                    <Route exact path='/assign' component={Assign} />
-                    <Route exact path='/vehicleForm' component={VehicleForm} />
-                    <Route exact path='/step1' component={Step1} />
-                    <Route exact path='/requestForm' component={RequestForm} />
-                    <Route exact path='/newRequest/:id' component={NewRequest} />
-                    <Route exact path='/step2' component={Step2} />
-                    <Route exact path='/step3' component={Step3} /> */}
                 </Switch>
                 </div>
             </main>

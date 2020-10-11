@@ -38,18 +38,19 @@ export default function MediaCard() {
     const history = useHistory();
 
     const routeChangeTrans = () => {
-        let path = 'TransportMain';
+        let path = 'Login';
         history.push(path);
     }
 
     return (
         <div>
-            <div>
-                <h1 style={{ fontSize: 60, padding: 30 }}>C-four Industries</h1>
-            </div>
+
+                    <img src="./logo.png" height="200" width="500" />
+
             <div style={{marginLeft: 1300}}>
-                <h2>Address Details</h2>
-                <h3>Telephone Number</h3>
+                <h2>Beligammana, Mawanella</h2>
+                <h3>+94 352 050 255</h3>
+                <h4>cfour@sltnet.lk</h4>
             </div>
             <br />
             <Navbar bg="dark" variant="dark">

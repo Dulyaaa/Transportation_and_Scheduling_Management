@@ -90,9 +90,9 @@ export default class CustomizedTables extends Component {
         this.deleteVehicle = this.deleteVehicle.bind(this);
 
         this.state = {
+            message: "",
             vehicles: [],
         }
-
     }
 
     componentDidMount(){
@@ -118,11 +118,18 @@ export default class CustomizedTables extends Component {
     deleteVehicle(id){
         VehicleDataService.delete(id)
         .then(response => {
-            this.setState({vehicles: this.state.vehicles.filter(vehicle => vehicle.id !== id)});
+            this.setState({
+                vehicles: this.state.vehicles.filter(vehicle => vehicle.id !== id),
+                message: "Successfully Deleted."
+            });
             console.log(response.data);
+            alert("Do you really want to delete?")
         })
         .catch(e => {
             console.log(e)
+            this.setState({
+                message: "Can't delete."
+            });
         })
     }
 
@@ -132,6 +139,9 @@ export default class CustomizedTables extends Component {
        return (
 
         <div>
+               <div style={{ backgroundColor: "yellow" }}>
+                   <p style={{ fontSize: 25 }}>{this.state.message}</p>
+               </div>
             <div>
                 <h1 style={{paddingTop: 20 }}>
                     Vehicle Details
