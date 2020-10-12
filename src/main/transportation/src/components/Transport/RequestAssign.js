@@ -187,6 +187,7 @@ export default class RequestAssign extends Component {
                     }
                 }));
                 console.log(response.data);
+                alert("Successfully updated the vehicle availability!")
             })
             .catch(e => {
                 console.log(e);

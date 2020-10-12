@@ -35,7 +35,7 @@ export default class Login extends Component {
             alert("Please enter username and password.")
         }
         else {
-            if(this.state.username === "Transport" && this.state.password === "12345"){
+            if(this.state.username === "Transport" && this.state.password === "trans@123"){
                 this.props.history.push("/TransportMain");
             }
             else if (this.state.username === "Customer" && this.state.password === "12345") {

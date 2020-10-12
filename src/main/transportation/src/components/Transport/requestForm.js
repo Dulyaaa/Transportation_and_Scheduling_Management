@@ -104,7 +104,7 @@ class RequestForm extends Component {
 
     addDetails () {
         this.setState({
-            customerName: "William Hamilgton",
+            customerName: "Mr.W.H.Perera",
             customerAddress: "Raththanapitya, Borelasgamuwa",
             quantity: 300,
             assignedVehicle: "",
