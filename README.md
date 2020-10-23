@@ -8,9 +8,9 @@ This is my individual part of the Factory and Sales Management system implementa
 ![CSS](https://img.shields.io/badge/Language-CSS-blue)
 
 ## Technology 
-* ReactJs
-* SpringBoot
-* MongoDB
+* ![ReactJs](https://img.shields.io/badge/FrontEnd-ReactJs-blue)
+* ![SpringBoot](https://img.shields.io/badge/BackEnd-Spring_Boot-green)
+* ![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)
 
 ### Transportation and Scheduling Management (My Contribution)
 This implementation part covered the Transpoer Department which has the responsible of take orders from customer, assign a vehicle for each order to deliver and manage the vehicles.
