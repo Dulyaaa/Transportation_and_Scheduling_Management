@@ -13,7 +13,7 @@ This is my individual part of the Factory and Sales Management system implementa
 * MongoDB
 
 ### Transportation and Scheduling Management (My Contribution)
-This implementation part covered the Transpoer Department which has the responsible of take orders from customer, assign a vehicle for each order and manage the vehicles.
+This implementation part covered the Transpoer Department which has the responsible of take orders from customer, assign a vehicle for each order to deliver and manage the vehicles.
 
 
 #### Sample user interfaces of woring project:
