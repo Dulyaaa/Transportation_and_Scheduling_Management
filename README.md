@@ -17,4 +17,7 @@ This implementation part covered the Transpoer Department which has the responsi
 
 
 #### Sample user interfaces of woring project
-<img width="700" alt="1PNG" align="center" src="https://user-images.githubusercontent.com/57215584/96396036-ced13e80-11e3-11eb-8659-d1fe565099b3.png">
+<img width="350" alt="1PNG" align="center" src="https://user-images.githubusercontent.com/57215584/96396036-ced13e80-11e3-11eb-8659-d1fe565099b3.png">
+<img width="350" alt="2PNG" align="center" src="https://user-images.githubusercontent.com/57215584/96954886-fd1b8a80-1511-11eb-992a-2105756ecd3d.png">
+<img width="700" alt="2PNG" align="center" src="https://user-images.githubusercontent.com/57215584/96954945-1e7c7680-1512-11eb-8369-622ff0b76bc6.png">
+<img width="700" alt="2PNG" align="center" src="https://user-images.githubusercontent.com/57215584/96954986-3522cd80-1512-11eb-91b5-ae2d0e2ec5bf.png">
