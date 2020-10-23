@@ -12,7 +12,7 @@ This is my individual part of the Factory and Sales Management system implementa
 * SpringBoot
 * MongoDB
 
-### Transportation and Scheduling Management
+### Transportation and Scheduling Management (My Contribution)
 This implementation part covered the Transpoer Department which has the responsible of take orders from customer, assign a vehicle for each order and manage the vehicles.
 
 
