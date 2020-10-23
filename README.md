@@ -20,9 +20,14 @@ This implementation part covered the Transpoer Department which has the responsi
 
 | <img alt="1PNG" src="https://user-images.githubusercontent.com/57215584/96396036-ced13e80-11e3-11eb-8659-d1fe565099b3.png"> |<img  alt="2PNG" a src="https://user-images.githubusercontent.com/57215584/96954886-fd1b8a80-1511-11eb-992a-2105756ecd3d.png">
 |:--:|:--:|
-| *All order details* | *Add new order* |
+| *`figure 1.1: All order details`* | *`figure 1.2: Add new order`* |
 
 | <img alt="2PNG"  src="https://user-images.githubusercontent.com/57215584/96954945-1e7c7680-1512-11eb-8369-622ff0b76bc6.png"> | <img  alt="2PNG" src="https://user-images.githubusercontent.com/57215584/96954986-3522cd80-1512-11eb-91b5-ae2d0e2ec5bf.png">
 |:--:|:--:|
-| *Delete and gnerate report of order* | *Assign avehicle for each order* |
+| *`figure 1.3: Delete and gnerate report of order`* | *`figure 1.4: Assign avehicle for each order`* |
+
+| <img alt="2PNG"  src="https://user-images.githubusercontent.com/57215584/96956477-dbbc9d80-1515-11eb-8930-3858fb54215b.png"> | <img  alt="2PNG" src="https://user-images.githubusercontent.com/57215584/96956647-52599b00-1516-11eb-854d-884518505ee3.png">
+|:--:|:--:|
+| *`figure 1.5: Vehicle details`* | *`figure 1.6: Add new vehicle`* |
+
 
