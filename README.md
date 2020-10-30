@@ -12,8 +12,8 @@ This is my individual part of the Factory and Sales Management system implementa
 * ![SpringBoot](https://img.shields.io/badge/BackEnd-Spring_Boot-green)
 * ![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)
 
-### Transportation and Scheduling Management (My Contribution)
-This implementation part covered the Transpoer Department which has the responsible of take orders from customer, assign a vehicle for each order to deliver and manage the vehicles.
+### Transportation and Scheduling Management (My Contribution):
+This implementation part covered the Transport Department work which has the responsible of taking orders from customer, assign a vehicle for each order to deliver and manage the vehicle details.
 
 
 #### Sample user interfaces of woring project:
