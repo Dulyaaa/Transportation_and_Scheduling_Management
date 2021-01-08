@@ -13,7 +13,13 @@ This is my individual part of the Factory and Sales Management system (https://g
 * ![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)
 
 ### Transportation and Scheduling Management (My Contribution):
-This implementation part covered the Transport Department work which has the responsible of taking orders from customer, assign a vehicle for each order to deliver and manage the vehicle details.
+This implementation part covered the:-
+* Take order details from customer
+* Assign a vehicle for each order
+* Delete Order
+* Generate order details report
+* 
+
 
 
 #### Sample user interfaces of woring project:
