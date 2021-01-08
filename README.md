@@ -1,5 +1,5 @@
 # 🚛 ITP - Transportation and Scheduling Management System
-This is my individual part of the Factory and Sales Management system implementation of 2nd Year 2nd Semester - Information Technology Project(ITP) module. Here we try to solve the difficulties faced in the company when making a read-made garment and distribution. As a solution we have created a Web application, whereas this is a part of the Web application, implemented with ReactJS, SpringBoot and MongoDB.
+This is my individual part of the Factory and Sales Management system (https://github.com/Dulyaaa/ITP_Factory-and-Sales-management-System) implementation of 2nd Year 2nd Semester - Information Technology Project(ITP) module. Here we try to solve the difficulties faced in the company when making a read-made garment and distribution. As a solution we have created a Web application, whereas this is a part of the Web application, implemented with ReactJS, SpringBoot and MongoDB.
 
 ## Language 
 
