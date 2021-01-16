@@ -18,8 +18,11 @@ This implementation part covered the:-
 * Assign a vehicle for each order
 * Delete Order
 * Generate order details report
-* 
+* Add new vehicle details
+* Update, delete vehicle details
+* Generate monthly vehicle report
 
+* ⚠ No order details updation (because of realiabilty of customer and seller)
 
 
 #### Sample user interfaces of woring project:
