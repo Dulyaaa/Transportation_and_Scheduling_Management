@@ -23,7 +23,7 @@ This implementation part covered the:-
 * Update, delete vehicle details
 * Generate monthly vehicle report
 
-* ⚠ No order details updation (because of realiabilty of customer and seller)
+* ⚠ No order details allow to update (because of realiabilty of customer and seller)
 
 
 #### Sample user interfaces of woring project:
